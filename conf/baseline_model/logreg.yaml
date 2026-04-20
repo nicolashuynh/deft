@@ -1,0 +1,9 @@
+name: logreg
+_target_: src.baselines.models.logreg.LogisticRegressionBaseline
+sweep_param: C
+C_values: [0.01, 0.1, 1.0, 10.0]
+C: 1.0
+penalty: l2
+solver: lbfgs
+max_iter: 1000
+random_state: 42

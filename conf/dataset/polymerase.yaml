@@ -1,0 +1,19 @@
+name: polymerase
+sequence_length: 101
+use_raw_sequence: ${oc.select:use_raw_sequence,false}
+type_dataset: ${oc.select:type_dataset,Plus}
+no_prior_knowledge: ${oc.select:no_prior_knowledge,false}
+test_size: ${oc.select:test_size,0.2}
+val_size: ${oc.select:val_size,0.1}
+n_nucleotides: 4
+subsample_proportion: ${oc.select:subsample_proportion,1.0}
+random_state: ${oc.select:random_state,42}
+name_experiment: ${oc.select:name_experiment,''}
+plugin:
+  _target_: src.data.dataset_plugins.PolymeraseDatasetPlugin
+  use_raw_sequence: ${..use_raw_sequence}
+  type_dataset: ${..type_dataset}
+  name_experiment: ${..name_experiment}
+  test_size: ${..test_size}
+  random_state: ${..random_state}
+  no_prior_knowledge: ${..no_prior_knowledge}

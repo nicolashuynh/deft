@@ -1,0 +1,14 @@
+name: mpra_enhancers
+sequence_length: 145
+val_size: ${oc.select:val_size,0.1}
+n_nucleotides: 4
+condition_name: ${oc.select:condition_name,k562_minp_avg}
+subsample_proportion: ${oc.select:subsample_proportion,1.0}
+one_hot_encode: ${oc.select:one_hot_encode,false}
+random_state: ${oc.select:random_state,42}
+plugin:
+  _target_: src.data.dataset_plugins.MPRADatasetPlugin
+  condition_name: ${..condition_name}
+  one_hot_encode: ${..one_hot_encode}
+  subsample_proportion: ${..subsample_proportion}
+  random_state: ${..random_state}

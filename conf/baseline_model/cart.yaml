@@ -1,0 +1,7 @@
+name: cart
+_target_: src.baselines.models.cart.CartBaseline
+sweep_param: max_depth
+max_depth: 6
+min_samples_split: 2
+min_samples_leaf_proportion: 0.01
+random_state: 42

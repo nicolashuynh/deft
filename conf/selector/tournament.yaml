@@ -1,0 +1,2 @@
+_target_: src.utils.selection.TournamentSelector
+tournament_size: 3

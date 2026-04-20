@@ -1,0 +1,16 @@
+_target_: src.models.cnn.LitConvolutionalNetwork
+
+# Pass-through values from the main config
+sequence_length: ${dataset.sequence_length}
+in_channels: ${dataset.n_nucleotides}
+learning_rate: ${learning_rate}
+
+# Best hyperparameters for Promoters (seed 42)
+filters1: 64
+kernel_size1: 2
+pool_size1: 4
+filters2: 128
+kernel_size2: 4
+pool_size2: 2
+dense_units: 64
+dropout: 0.5

@@ -1,0 +1,10 @@
+# conf/baseline/random_forest.yaml
+
+name: RandomForest
+
+# Scikit-learn RandomForestClassifier parameters
+n_estimators: 200
+max_depth: null # Let the trees grow
+min_samples_split: 2
+min_samples_leaf: 1
+n_jobs: -1 # Use all available CPU cores

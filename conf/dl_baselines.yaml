@@ -1,0 +1,52 @@
+defaults:
+  - dataset: polymerase
+  - _self_
+
+models_to_run: [cnn, transformer]
+seed_list: [42, 43, 44, 45, 46]
+metrics: [accuracy, f1, precision, recall, auprc]
+
+max_epochs: 50
+early_stopping: true
+patience: 3
+deterministic: true
+enable_progress_bar: true
+
+output_dir_template: results/${dataset.name}/baselines
+
+model_registry:
+  polymerase:
+    cnn:
+      dl_model: cnn_polymerase_best
+      learning_rate: 0.001
+      batch_size: 128
+      patience: 3
+    transformer:
+      dl_model: transformer_polymerase_best
+      learning_rate: 0.001
+      batch_size: 32
+      patience: 3
+  promoters:
+    cnn:
+      dl_model: cnn_promoters_best
+      learning_rate: 0.0001
+      batch_size: 32
+    transformer:
+      dl_model: transformer_promoters_best
+      learning_rate: 0.001
+      batch_size: 32
+  mpra_enhancers:
+    cnn:
+      dl_model: cnn_mpra_best
+      learning_rate: 0.001
+      batch_size: 32
+      patience: 3
+    transformer:
+      dl_model: transformer_mpra_best
+      learning_rate: 0.001
+      batch_size: 128
+      patience: 3
+
+hydra:
+  job:
+    chdir: false

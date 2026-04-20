@@ -1,0 +1,13 @@
+
+# conf/baseline/xgboost.yaml
+
+name: XGBoost
+
+# XGBClassifier parameters
+n_estimators: 200
+max_depth: 10
+learning_rate: 0.1
+subsample: 0.8
+colsample_bytree: 0.8
+use_label_encoder: false
+eval_metric: logloss

@@ -1,0 +1,12 @@
+_target_: src.models.transformer.LitTransformer
+
+# Arguments for the model's __init__ method
+learning_rate: ${learning_rate}
+sequence_length: ${dataset.sequence_length}
+n_nucleotides: ${dataset.n_nucleotides}
+
+# Best hyperparameters for MPRA (seed 42)
+d_model: 64
+n_head: 2
+n_layers: 2
+dropout: 0.0

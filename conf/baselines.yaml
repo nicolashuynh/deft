@@ -1,0 +1,15 @@
+defaults:
+  - dataset: polymerase
+  - baseline_model: cart
+  - featurizer: identity
+  - _self_
+
+seed_list: [42, 43, 44, 45, 46]
+metrics: [accuracy, f1, precision, recall, auprc]
+
+output_dir_template: results/${dataset.name}/baselines
+output_file_template: ${baseline_model.name}__${featurizer.name}.csv
+
+hydra:
+  job:
+    chdir: false

@@ -1,0 +1,10 @@
+name: promoters
+sequence_length: 201
+val_size: ${oc.select:val_size,0.2}
+n_nucleotides: 5
+subsample_proportion: ${oc.select:subsample_proportion,1.0}
+random_state: ${oc.select:random_state,42}
+plugin:
+  _target_: src.data.dataset_plugins.PromotersDatasetPlugin
+  random_state: ${..random_state}
+  subsample_proportion: ${..subsample_proportion}

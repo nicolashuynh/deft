@@ -1,0 +1,11 @@
+_target_: src.llm.engines.api_engine.APIEngine
+content: ${content}
+temperature: 1
+top_p: 0.95
+max_tokens: 500
+max_attempts: 100
+rate_limiter: null
+request_timeout: 20
+config: ${llm_models}
+request_adapter:
+  _target_: src.llm.engines.unified_api_engine.StandardRequestAdapter

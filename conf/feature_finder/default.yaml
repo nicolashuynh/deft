@@ -1,0 +1,3 @@
+_target_: src.features.feature_finder.LLMFeatureFinder
+parsing_module_name: src.utils.parsing
+type_engine: old

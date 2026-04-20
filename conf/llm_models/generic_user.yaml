@@ -1,0 +1,6 @@
+model: gpt-4o
+api_type: azure
+api_base: https://<your-azure-openai-resource>.openai.azure.com/
+api_version: 2025-04-01-preview
+api_key: ${oc.env:DEFT_API_KEY}
+

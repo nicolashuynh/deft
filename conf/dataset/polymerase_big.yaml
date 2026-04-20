@@ -1,0 +1,21 @@
+name: polymerase_big
+sequence_length: 101
+use_raw_sequence: True
+val_size: ${oc.select:val_size,0.1}
+n_nucleotides: 4
+subsample_proportion: ${oc.select:subsample_proportion,1.0}
+random_state: ${oc.select:random_state,42}
+data_dir: ${oc.select:data_dir,data/polymerase_big/processed}
+train_filename: ${oc.select:train_filename,train_polymerase_big.csv}
+test_filename: ${oc.select:test_filename,test_polymerase_big.csv}
+sequence_column: ${oc.select:sequence_column,raw_sequence}
+label_column: ${oc.select:label_column,paused}
+plugin:
+  _target_: src.data.dataset_plugins.PolymeraseBigDatasetPlugin
+  data_dir: ${..data_dir}
+  train_filename: ${..train_filename}
+  test_filename: ${..test_filename}
+  sequence_column: ${..sequence_column}
+  label_column: ${..label_column}
+  subsample_proportion: ${..subsample_proportion}
+  random_state: ${..random_state}

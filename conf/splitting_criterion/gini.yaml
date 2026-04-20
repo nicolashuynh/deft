@@ -1,0 +1,2 @@
+_target_: src.trees.split_criterion.GiniCriterion
+offset: 1.0

@@ -1,0 +1,127 @@
+max_depth: 6
+min_samples_leaf_fraction: 0.01
+random_state: 42
+use_raw_sequence: true
+type_dataset: "Plus"
+name_experiment: "multiple_seeds"
+
+test_size: 0.2
+content: "You are an expert in biology and DNA sequences."
+params_generation:
+  target_name: "RNA polymerase pausing"
+  dataset_info: "This is a dataset about RNA polymerase pausing"
+  context_template_name_desc: >-
+    Your goal is to help with the task of growing a decision tree to predict {target_name}. 
+    {dataset_info}. Given a current node that we want to split in the tree, you will 
+    construct a new feature based on the original DNA sequence, such that this new feature 
+    is discriminative for the prediction task of classifying {target_name}. The raw 
+    feature is the DNA sequence of length 101 centered on the pause site. Positions from 0 to 49 included correspond to the upstream region. Position 50 corresponds to the site. Positions from 51 to 100 included are in the downstream region. The possible 
+    nucleotide values are A, C, G, T.
+  context_code: "Your goal is to generate a python code to construct a feature, based on a dataframe."
+  instructions_name_desc: >-
+    Leverage your biology expertise and your creativity to generate a good feature (name, 
+    description, justification). This feature can be simple. Importantly, take into account 
+    the contextual history given above , which defines the sequence of splitting conditions 
+    from the root node up to the current node. Your new feature should not be redundant 
+    with the splitting condition features. This point is very important because the dataset 
+    at the current node can be small, and you have to avoid overfitting. Another important 
+    point: The feature should be interpretable. The feature should capture a single, clear 
+    biological mechanism. Use only basic sequence properties that a biologist could understand 
+    and find intuitive. Avoid combining multiple biological mechanisms into one feature, 
+    which would introduce complexity. Be very explicit in your description on how you compute 
+    the feature. Return the feature in the following JSON format:
+
+    {"rationale": "rationale", "description": "your_feature_description", "name": "your_feature_name"}
+
+    Only return the JSON object, with no additional text. Do not include "json" in front of it
+  instructions_code: >-
+    The raw feature is the DNA sequence of length 101 centered on the pause site. Positions from 0 to 49 included correspond to the upstream region. Position 50 corresponds to the site. Positions from 51 to 100 included are in the downstream region. The possible 
+    nucleotide values are A, C, G, T. Give instantly executable code without example usage. Only return the Python function, 
+    with no additional text. The name of the argument should be 'X'. Only output one function, 
+    this is very important. The function should only return the new feature column. Start your 
+    output with the string 'def {Function Name}(X):' do not include 'python' in front of it
+  include_ic_samples: true
+  include_history: true
+  include_feature_description: true
+  population_size: 10
+  n_prompts: 1
+  n_parents_per_prompt: 10
+  n_ic_samples: 1
+  n_samples_per_prompt: 20
+  n_outcomes_per_sample_code: 1
+  use_reflection: true
+  list_instructions_reflection:
+    - >-
+      Your goal is to help with the task of growing a decision tree to predict RNA polymerase 
+      pausing. Given a current node that we want to split in the tree, you will construct a new 
+      feature based on the original DNA sequence, such that this new feature is discriminative 
+      for the prediction task of classifying RNA polymerase pausing (the DNA sequence has length 101 centered on the pause site. Positions from 0 to 49 included correspond to the upstream region. Position 50 corresponds to the site. Positions from 51 to 100 included are in the downstream region). The feature should be: 
+      1. Biologically interpretable - based on possible mechanisms of transcription and intuitive 
+      for biologists 2. Computationally clear - specify exact positions and calculation methods, 
+      3. Complementary to previous splitting conditions from the root to current node. Your new 
+      feature should not be redundant with the splitting condition features. This point is very 
+      important because the dataset at the current node can be small, and you have to avoid 
+      overfitting. I am going to give you an initial population of features with their respective 
+      scores (higher is better). The feature you generate should be as different 
+      as possible from the initial population in order to explore new ideas. Another important 
+      point: The feature should be interpretable. To assess interpretability, please consider 
+      the following aspects: 1) Simplicity: the should be simple and easy to understand for a 
+      biologist. An interpretable feature should not be overly complex (and not involve multiple 
+      complex phenomena). Hence features which incorporate too many multiple distinct components 
+      are NOT simple and should not be generated. 2) Intuitiveness: The feature should be intuitive 
+      and easy to explain to a biologist 3) Relevance: the feature should be relevant to the 
+      biological prediction task. Return three things: 
+      1. Rationale: describe step by step how you came up with this feature, taking into account 
+      BOTH the splitting conditions and the population of candidate features. If you feature 
+      involves a physical or biological mechanism, say why it is relevant). 2. Description: 
+      precise calculation method 3. Name: clear and descriptive. Return in the following JSON format:
+
+      {"rationale": "your_rationale", "description": "your_feature_description", "name": "your_feature_name"}
+
+      Only return the JSON object, with no additional text. Do not include "json" in front of it
+    - >-
+      Your goal is to help with the task of growing a decision tree to predict RNA polymerase 
+      pausing. Given a current node that we want to split in the tree, you will construct a new 
+      feature based on the original DNA sequence, such that this new feature is discriminative 
+      for the prediction task of classifying RNA polymerase pausing (the DNA sequence has length 101 centered on the pause site. Positions from 0 to 49 included correspond to the upstream region. Position 50 corresponds to the site. Positions from 51 to 100 included are in the downstream region). The feature should be: 1. Biologically interpretable - based on possible mechanisms of transcription and intuitive 
+      for biologists 2. Computationally clear - specify exact positions and calculation methods, 
+      3. Complementary to previous splitting conditions from the root to current node. Your new 
+      feature should not be redundant with the splitting condition features. This point is very 
+      important because the dataset at the current node can be small, and you have to avoid 
+      overfitting. I am going to give you an initial population of features with their respective 
+      scores (higher is better). Very important: First identify common ideas of the top 
+      performing solutions in the population. Then base your feature on these common ideas and 
+      simplify them to get one good feature, but do not simply combine these common ideas 
+      (do not just add them for example, that would create too much complexity). Another 
+      important point: The feature should be interpretable. To assess interpretability, please 
+      consider the following aspects: 1) Simplicity: the should be simple and easy to understand. 
+      An interpretable feature should not be overly complex (and not involve multiple complex 
+      phenomena). Hence features which incorporate too many multiple distinct components are NOT 
+      simple and should not be generated. 2) Intuitiveness: The feature should be intuitive and 
+      easy to explain to a biologist 3) Relevance: the feature should be relevant to the 
+      biological prediction task. Return three things: 1. Rationale: describe step by 
+      step how you came up with this feature, taking into account BOTH the splitting conditions 
+      and the population of candidate features. If you feature involves a physical or biological 
+      mechanism, say why it is relevant). 2. Description: precise calculation method 3. Name: 
+      clear and descriptive. Return in the following JSON format:
+
+      {"rationale": "your_rationale", "description": "your_feature_description", "name": "your_feature_name"}
+
+      Only return the JSON object, with no additional text. Do not include "json" in front of it
+  n_reflections: 20
+  remove_duplicates: true
+  alpha: 0.1
+  initialize_with_naive_features: true
+  include_code_in_reflection: true
+  include_rationale_in_reflection: true
+  use_description_in_history: true
+  
+defaults:
+  - selector: topk
+  - llm_models: generic_user
+  - llm: default
+  - feature_finder: default
+  - dataset: polymerase
+  - splitting_criterion: gini
+  - tree: default
+  - _self_

@@ -1,0 +1,42 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+logs/
+outputs/
+multirun/
+trainer_output/
+data/mpra/
+tests/
+# Ignore generated figure PDFs
+figures/*.pdf
+figures/**/*.pdf
+# Polymerase-big raw and processed large data files
+data/polymerase_big/*.tsv
+data/polymerase_big/processed/*.csv
+# Artifacts: keep only lightweight DEFT tree .dill files for notebooks.
+artifacts/*
+!artifacts/trees/
+artifacts/trees/*
+!artifacts/trees/*/
+artifacts/trees/*/*
+!artifacts/trees/*/deft_lightweight/
+artifacts/trees/*/deft_lightweight/*
+!artifacts/trees/*/deft_lightweight/*.dill
+!artifacts/trees/*/deft_perf_lightweight/
+artifacts/trees/*/deft_perf_lightweight/*
+!artifacts/trees/*/deft_perf_lightweight/*.dill
+!artifacts/trees/*/deft_perf_lightweight/*.pkl
+!artifacts/motif_example/
+artifacts/motif_example/*
+!artifacts/motif_example/*.csv
+
+# Local utility variants (keep on disk, do not track in git)
+src/utils/lightweight_tree.py
+src/utils/plotting.py
+
+# Legacy/private LLM endpoint configs (replaced by generic config).
+conf/llm_models/mpra_gpt4o.yaml
+conf/llm_models/polymerase_gpt4o.yaml
+conf/llm_models/promoters_gpt4o.yaml

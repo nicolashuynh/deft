@@ -1,0 +1,9 @@
+name: oc1
+_target_: src.baselines.models.oc1.OC1Baseline
+sweep_param: max_depth
+max_depth: 6
+num_tries: 20
+min_samples_split: 2
+min_samples_leaf_proportion: 0.01
+random_state: 42
+random_state_from_seed: false
